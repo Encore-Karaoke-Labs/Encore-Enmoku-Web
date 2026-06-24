@@ -226,6 +226,33 @@ button:active {
   background: rgba(255, 255, 255, 0.02);
 }
 
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.action-btn {
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  padding: 0.5rem;
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.action-btn ion-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.1rem;
+}
+
 .search-bar {
   flex: 1;
   background: rgba(0, 0, 0, 0.3);
@@ -239,6 +266,74 @@ button:active {
 }
 .search-bar:focus {
   border-color: var(--primary);
+}
+
+/* Camera View Layout */
+.camera-preview-container {
+  flex: 1;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-status-overlay {
+  position: absolute;
+  text-align: center;
+  padding: 2rem;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.camera-status-overlay ion-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--text-dim);
+  transition: color 0.3s ease;
+}
+
+.camera-status-overlay h3 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  transition: color 0.3s ease;
+}
+
+/* Error State */
+.camera-status-overlay.error ion-icon,
+.camera-status-overlay.error h3 {
+  color: #ff5555;
+}
+
+/* Video Element */
+#camera-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#camera-preview.active {
+  opacity: 1;
+}
+
+/* Bottom Controls */
+.camera-controls-bar {
+  padding: 1rem;
+  background: #000;
+  display: flex;
+  gap: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.camera-controls-bar button {
+  flex: 1;
 }
 
 /* Main Remote Full Grid layout */
@@ -492,6 +587,18 @@ button:active {
   text-align: center;
   width: 100%;
   margin-bottom: 2rem;
+}
+
+#camera-view {
+  z-index: 50;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  visibility: hidden;
+}
+
+#camera-view.active {
+  transform: translateY(0);
+  visibility: visible;
 }
 
 @media (min-width: 768px) {
